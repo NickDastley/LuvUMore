@@ -1,0 +1,23 @@
+<article>
+  <header class="center">
+    <h1>LuvUMore</h1>
+    <p class="winner">Heutiger Gewinner (<span class="date"><%= todayDate %></span>):
+      <% if (winner) { %>
+        <strong><%= winner === 'nico' ? names.a : names.b %></strong>
+      <% } else { %>
+        —
+      <% } %>
+    </p>
+  </header>
+
+  <form method="post" action="/today">
+    <div class="big-buttons">
+      <button type="submit" name="winner" value="nico" class="contrast"><%= names.a %></button>
+      <button type="submit" name="winner" value="nena" class="secondary"><%= names.b %></button>
+    </div>
+  </form>
+
+  <footer class="center">
+    <small>TZ: <code><%= process.env.TZ || 'Europe/Berlin' %></code></small>
+  </footer>
+</article>

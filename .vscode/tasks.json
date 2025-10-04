@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install and test LuvUMore",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+				"-lc",
+				"node -v && echo \"No npm available in this environment; skipping install. Use your local machine to run: npm install && npm test && npm start\""
+			],
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

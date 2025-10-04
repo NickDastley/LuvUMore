@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    image: luv-u-more:latest
+    environment:
+      - TZ=${TZ:-Europe/Berlin}
+      - PARTNER_A_NAME=${PARTNER_A_NAME:-Nico}
+      - PARTNER_B_NAME=${PARTNER_B_NAME:-Nena}
+      - DB_PATH=/data/app.db
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/data
+
+volumes:
+  data:
