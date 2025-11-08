@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { db, upsertToday, getToday, getStatistics, getHistory, ensureSchema } from './services/db.js';
 import { todayDate, nowUtcMs } from './utils/time.js';
+import { calculateRelationshipStats, getRelationshipStartDate } from './utils/relationshipStats.js';
 import ejsLayouts from 'express-ejs-layouts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -36,6 +37,8 @@ app.get('/', (req, res) => {
   const today = getToday(d);
   const stats = getStatistics();
   const history = getHistory();
+  const relationshipStats = calculateRelationshipStats(getRelationshipStartDate(), tz);
+  
   res.render('index', {
     title: 'LuvUMore',
     todayDate: d,
@@ -43,6 +46,7 @@ app.get('/', (req, res) => {
     names: { a: PARTNER_A, b: PARTNER_B },
     stats,
     history,
+    relationshipStats,
   });
 });
 

@@ -3,10 +3,13 @@ services:
   app:
     build: .
     image: luv-u-more:latest
+    env_file:
+      - .env
     environment:
       - TZ=${TZ:-Europe/Berlin}
       - PARTNER_A_NAME=${PARTNER_A_NAME:-Nico}
       - PARTNER_B_NAME=${PARTNER_B_NAME:-Nena}
+      - RELATIONSHIP_START_DATE=${RELATIONSHIP_START_DATE:-2021-11-12}
       - DB_PATH=/data/app.db
       - PORT=3000
     ports:

@@ -22,6 +22,93 @@
   </footer>
 </article>
 
+<!-- NEW: Relationship Duration Statistics -->
+<article class="relationship-stats-card">
+  <header>
+    <h2>💕 Zusammen seit dem 12. November 2021</h2>
+  </header>
+
+  <div class="relationship-stats">
+    <!-- Combined breakdown -->
+    <div class="stat-box primary-stat">
+      <div class="stat-label">Unsere gemeinsame Zeit</div>
+      <div class="stat-value" id="timeCombined">
+        <span id="years"><%= relationshipStats.breakdown.years %></span> Jahre,
+        <span id="days"><%= relationshipStats.breakdown.days %></span> Tage,
+        <span id="hours"><%= relationshipStats.breakdown.hours %></span> Stunden,
+        <span id="minutes"><%= relationshipStats.breakdown.minutes %></span> Minuten,
+        <span id="seconds"><%= relationshipStats.breakdown.seconds %></span> Sekunden
+      </div>
+    </div>
+
+    <!-- Total units grid -->
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-label">Tage</div>
+        <div class="stat-value" id="totalDays"><%= relationshipStats.totals.days.toLocaleString('de-DE') %></div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">Stunden</div>
+        <div class="stat-value" id="totalHours"><%= relationshipStats.totals.hours.toLocaleString('de-DE') %></div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">Minuten</div>
+        <div class="stat-value" id="totalMinutes"><%= relationshipStats.totals.minutes.toLocaleString('de-DE') %></div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">Sekunden</div>
+        <div class="stat-value" id="totalSeconds"><%= relationshipStats.totals.seconds.toLocaleString('de-DE') %></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Pass server data to client
+    const RELATIONSHIP_START = '<%= relationshipStats.startDate %>';
+    
+    // Update function
+    function updateRelationshipStats() {
+      const start = new Date(RELATIONSHIP_START + 'T00:00:00');
+      const now = new Date();
+      const totalMs = now - start;
+      
+      // Calculate totals
+      const totalSeconds = Math.floor(totalMs / 1000);
+      const totalMinutes = Math.floor(totalSeconds / 60);
+      const totalHours = Math.floor(totalMinutes / 60);
+      const totalDays = Math.floor(totalHours / 24);
+      
+      // Calculate breakdown
+      const years = Math.floor(totalDays / 365.25);
+      const remainingDays = Math.floor(totalDays - (years * 365.25));
+      const remainingHours = totalHours % 24;
+      const remainingMinutes = totalMinutes % 60;
+      const remainingSeconds = totalSeconds % 60;
+      
+      // Update DOM
+      document.getElementById('years').textContent = years;
+      document.getElementById('days').textContent = remainingDays;
+      document.getElementById('hours').textContent = remainingHours;
+      document.getElementById('minutes').textContent = remainingMinutes;
+      document.getElementById('seconds').textContent = remainingSeconds;
+      
+      document.getElementById('totalDays').textContent = totalDays.toLocaleString('de-DE');
+      document.getElementById('totalHours').textContent = totalHours.toLocaleString('de-DE');
+      document.getElementById('totalMinutes').textContent = totalMinutes.toLocaleString('de-DE');
+      document.getElementById('totalSeconds').textContent = totalSeconds.toLocaleString('de-DE');
+    }
+    
+    // Update every second
+    setInterval(updateRelationshipStats, 1000);
+    
+    // Initial update
+    updateRelationshipStats();
+  </script>
+</article>
+
 <article class="stats-card">
   <header>
     <h2>Statistiken</h2>

@@ -16,6 +16,72 @@
       .stats-summary { font-size: 1.1rem; margin-bottom: 1rem; }
       #historyTable table { font-size: 0.9rem; }
       #historyTable input[type="text"] { font-size: 0.85rem; padding: 0.4rem; }
+      
+      /* Relationship Stats Styles */
+      .relationship-stats-card {
+        margin-top: 2rem;
+        background: linear-gradient(135deg, rgba(255, 105, 180, 0.1), rgba(255, 182, 193, 0.1));
+        border: 2px solid rgba(255, 105, 180, 0.3);
+      }
+      
+      .relationship-stats-card h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      
+      .relationship-stats {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .stat-box {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      }
+      
+      .primary-stat {
+        background: rgba(255, 105, 180, 0.15);
+        padding: 1.5rem;
+      }
+      
+      .stat-label {
+        font-size: 0.875rem;
+        color: var(--pico-muted-color);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--pico-primary);
+        font-variant-numeric: tabular-nums;
+      }
+      
+      .primary-stat .stat-value {
+        font-size: 1.25rem;
+        line-height: 1.6;
+      }
+      
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      
+      @media (min-width: 768px) {
+        .stats-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .big-buttons button {
+          font-size: 2rem;
+          padding: 3rem;
+        }
+      }
     </style>
   </head>
   <body>
