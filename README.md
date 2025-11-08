@@ -77,3 +77,16 @@ docker compose up --build
 ```
 
 Make sure to create a `.env` file before running (see Configuration section above).
+
+## Unraid Deployment
+
+LuvUMore can be easily deployed on Unraid servers. See [UNRAID_DEPLOYMENT.md](UNRAID_DEPLOYMENT.md) for detailed instructions.
+
+**Quick Start:**
+1. Add container in Unraid Docker UI
+2. Use repository: `ghcr.io/nickdastley/luvumore:latest`
+3. Configure partner names and relationship start date
+4. Map `/data` to `/mnt/user/appdata/luvumore`
+5. Access via `http://unraid-ip:3000`
+
+For detailed setup, troubleshooting, and reverse proxy configuration, see the full [Unraid Deployment Guide](UNRAID_DEPLOYMENT.md).

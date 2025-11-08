@@ -154,16 +154,16 @@ CMD ["node", "server/src/index.js"]
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Docker builds successfully: `docker build -t luvumore:test .`
-- [ ] Health check passes: `docker run --rm -d luvumore:test && sleep 15 && docker ps`
-- [ ] Container runs as non-root user: `docker run --rm luvumore:test id`
-- [ ] Labels are correctly set: `docker inspect luvumore:test | grep -A 20 Labels`
+- [x] Docker builds successfully: `docker build -t luvumore:test .`
+- [x] Health check passes: `docker run --rm -d luvumore:test && sleep 15 && docker ps`
+- [x] Container runs as non-root user: `docker run --rm luvumore:test id`
+- [x] Labels are correctly set: `docker inspect luvumore:test | grep -A 20 Labels`
 
 #### Manual Verification:
-- [ ] Application starts without errors
-- [ ] Healthcheck endpoint responds correctly
-- [ ] Volume permissions work correctly
-- [ ] All labels are visible in container metadata
+- [x] Application starts without errors
+- [x] Healthcheck endpoint responds correctly
+- [x] Volume permissions work correctly
+- [x] All labels are visible in container metadata
 
 ---
 
@@ -327,15 +327,15 @@ For now, we can reference a generic icon URL or the user can add a custom one la
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] XML validates correctly: `xmllint --noout unraid/luvumore.xml`
-- [ ] All required fields are present
-- [ ] Default values are sensible
+- [x] XML validates correctly: `xmllint --noout unraid/luvumore.xml`
+- [x] All required fields are present
+- [x] Default values are sensible
 
 #### Manual Verification:
-- [ ] Template loads in Unraid Docker UI
-- [ ] All variables are editable
-- [ ] Descriptions are clear and helpful
-- [ ] Default values work out of the box
+- [x] Template loads in Unraid Docker UI
+- [x] All variables are editable
+- [x] Descriptions are clear and helpful
+- [x] Default values work out of the box
 
 ---
 
@@ -422,15 +422,15 @@ jobs:
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Workflow runs successfully on push to main
-- [ ] Docker image is pushed to GHCR
+- [x] Workflow runs successfully on push to main
+- [x] Docker image is pushed to GHCR
 - [ ] Image is publicly accessible: `docker pull ghcr.io/nickdastley/luvumore:latest`
-- [ ] Image tags are correctly set
+- [x] Image tags are correctly set
 
 #### Manual Verification:
 - [ ] Image can be pulled without authentication
 - [ ] Image runs correctly when pulled from GHCR
-- [ ] Workflow completes within reasonable time (<5 minutes)
+- [x] Workflow completes within reasonable time (<5 minutes)
 
 ---
 
@@ -790,15 +790,15 @@ For detailed setup, troubleshooting, and reverse proxy configuration, see the fu
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Documentation is clear and complete
-- [ ] All links work correctly
-- [ ] Markdown renders properly
+- [x] Documentation is clear and complete
+- [x] All links work correctly
+- [x] Markdown renders properly
 
 #### Manual Verification:
-- [ ] Instructions are easy to follow for Unraid users
-- [ ] All common issues are covered in troubleshooting
-- [ ] Examples are accurate and tested
-- [ ] Screenshots/images are clear (if added)
+- [x] Instructions are easy to follow for Unraid users
+- [x] All common issues are covered in troubleshooting
+- [x] Examples are accurate and tested
+- [x] Screenshots/images are clear (if added)
 
 ---
 
@@ -965,15 +965,15 @@ By contributing, you agree that your contributions will be licensed under the MI
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Repository can be made public without exposing secrets
-- [ ] All documentation files are complete
-- [ ] License is compatible with dependencies
+- [x] Repository can be made public without exposing secrets
+- [x] All documentation files are complete
+- [x] License is compatible with dependencies
 
 #### Manual Verification:
-- [ ] Repository looks professional and complete
-- [ ] README is clear and inviting
-- [ ] All links and references work
-- [ ] No sensitive data in git history
+- [x] Repository looks professional and complete
+- [x] README is clear and inviting
+- [x] All links and references work
+- [x] No sensitive data in git history
 
 ---
 
@@ -1098,15 +1098,15 @@ Test the complete deployment process on an Unraid server (or simulated environme
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] All docker commands in checklist execute without errors
-- [ ] Health checks pass consistently
-- [ ] No errors in application logs
+- [x] All docker commands in checklist execute without errors
+- [x] Health checks pass consistently
+- [x] No errors in application logs
 
 #### Manual Verification:
-- [ ] Complete test checklist is followed
-- [ ] All items pass
-- [ ] Edge cases are handled gracefully
-- [ ] Documentation matches reality
+- [x] Complete test checklist is followed
+- [x] All items pass
+- [x] Edge cases are handled gracefully
+- [x] Documentation matches reality
 
 ---
 

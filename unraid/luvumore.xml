@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>LuvUMore</Name>
+  <Repository>ghcr.io/nickdastley/luvumore:latest</Repository>
+  <Registry>https://ghcr.io</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/NickDastley/LuvUMore/issues</Support>
+  <Project>https://github.com/NickDastley/LuvUMore</Project>
+  <Overview>
+    LuvUMore is a minimal web application to track daily relationship wins between two partners.
+    
+    Features:
+    - Daily winner tracking with two simple buttons
+    - Live relationship duration statistics (years, days, hours, minutes, seconds)
+    - Win statistics and history with filtering and sorting
+    - Mobile-first responsive design
+    - SQLite database with persistent storage
+    
+    Perfect for couples who want to keep track of their "I love you more" competition!
+  </Overview>
+  <Category>Tools: Status:Stable</Category>
+  <WebUI>http://[IP]:[PORT:3000]</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/NickDastley/LuvUMore/main/unraid/luvumore.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/NickDastley/LuvUMore/main/unraid/icon.png</Icon>
+  <Description>
+    Minimal web app to record daily winners between two partners. 
+    Server-rendered HTML, SQLite storage, mobile-first design.
+  </Description>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>3000</HostPort>
+        <ContainerPort>3000</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/luvumore</HostDir>
+      <ContainerDir>/data</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Environment>
+    <Variable>
+      <Value>Nico</Value>
+      <Name>PARTNER_A_NAME</Name>
+      <Mode/>
+      <Description>Name of first partner (displayed on left button)</Description>
+      <Type>Variable</Type>
+      <Display>always</Display>
+      <Required>true</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Value>Nena</Value>
+      <Name>PARTNER_B_NAME</Name>
+      <Mode/>
+      <Description>Name of second partner (displayed on right button)</Description>
+      <Type>Variable</Type>
+      <Display>always</Display>
+      <Required>true</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Value>2021-11-12</Value>
+      <Name>RELATIONSHIP_START_DATE</Name>
+      <Mode/>
+      <Description>Start date of relationship in YYYY-MM-DD format. Used for relationship duration statistics.</Description>
+      <Type>Variable</Type>
+      <Display>always</Display>
+      <Required>true</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Value>Europe/Berlin</Value>
+      <Name>TZ</Name>
+      <Mode/>
+      <Description>Timezone for date calculations (IANA timezone format, e.g., Europe/Berlin, America/New_York)</Description>
+      <Type>Variable</Type>
+      <Display>always</Display>
+      <Required>true</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Value>/data/app.db</Value>
+      <Name>DB_PATH</Name>
+      <Mode/>
+      <Description>Path to SQLite database file inside container (leave default unless you know what you're doing)</Description>
+      <Type>Variable</Type>
+      <Display>advanced</Display>
+      <Required>true</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Value>3000</Value>
+      <Name>PORT</Name>
+      <Mode/>
+      <Description>Internal container port (leave default unless you know what you're doing)</Description>
+      <Type>Variable</Type>
+      <Display>advanced</Display>
+      <Required>true</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Value>1000</Value>
+      <Name>PUID</Name>
+      <Mode/>
+      <Description>User ID for file permissions (match your Unraid user ID)</Description>
+      <Type>Variable</Type>
+      <Display>advanced-hide</Display>
+      <Required>false</Required>
+      <Mask>false</Mask>
+    </Variable>
+    <Variable>
+      <Value>1000</Value>
+      <Name>PGID</Name>
+      <Mode/>
+      <Description>Group ID for file permissions (match your Unraid group ID)</Description>
+      <Type>Variable</Type>
+      <Display>advanced-hide</Display>
+      <Required>false</Required>
+      <Mask>false</Mask>
+    </Variable>
+  </Environment>
+  <Config Name="WebUI Port" Target="3000" Default="3000" Mode="tcp" Description="Port for web interface access" Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+  <Config Name="AppData Storage" Target="/data" Default="/mnt/user/appdata/luvumore" Mode="rw" Description="Directory for persistent database storage" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/luvumore</Config>
+  <Config Name="Partner A Name" Target="PARTNER_A_NAME" Default="Nico" Mode="" Description="Name of first partner" Type="Variable" Display="always" Required="true" Mask="false">Nico</Config>
+  <Config Name="Partner B Name" Target="PARTNER_B_NAME" Default="Nena" Mode="" Description="Name of second partner" Type="Variable" Display="always" Required="true" Mask="false">Nena</Config>
+  <Config Name="Relationship Start Date" Target="RELATIONSHIP_START_DATE" Default="2021-11-12" Mode="" Description="Start date (YYYY-MM-DD)" Type="Variable" Display="always" Required="true" Mask="false">2021-11-12</Config>
+  <Config Name="Timezone" Target="TZ" Default="Europe/Berlin" Mode="" Description="Timezone (IANA format)" Type="Variable" Display="always" Required="true" Mask="false">Europe/Berlin</Config>
+  <Config Name="Database Path" Target="DB_PATH" Default="/data/app.db" Mode="" Description="Internal database path" Type="Variable" Display="advanced" Required="true" Mask="false">/data/app.db</Config>
+  <Config Name="Container Port" Target="PORT" Default="3000" Mode="" Description="Internal port" Type="Variable" Display="advanced" Required="true" Mask="false">3000</Config>
+</Container>
