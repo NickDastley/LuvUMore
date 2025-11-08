@@ -47,3 +47,30 @@ export function getToday(date) {
   const stmt = db.prepare('SELECT date, winner, recorded_at as recordedAt, source, note FROM winners WHERE date = ?');
   return stmt.get(date);
 }
+
+/**
+ * Get overall statistics (total wins per partner)
+ * @returns {{ winner: string, count: number }[]}
+ */
+export function getStatistics() {
+  const stmt = db.prepare(`
+    SELECT winner, COUNT(*) as count 
+    FROM winners 
+    GROUP BY winner 
+    ORDER BY count DESC
+  `);
+  return stmt.all();
+}
+
+/**
+ * Get full history of all winners
+ * @returns {{ date: string, winner: string, recordedAt: number, source: string, note: string|null }[]}
+ */
+export function getHistory() {
+  const stmt = db.prepare(`
+    SELECT date, winner, recorded_at as recordedAt, source, note 
+    FROM winners 
+    ORDER BY date DESC
+  `);
+  return stmt.all();
+}

@@ -12,11 +12,97 @@
       .center { text-align: center; }
       footer { margin-top: 3rem; font-size: 0.9rem; color: var(--muted-color); }
       .date { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+      .stats-card { margin-top: 2rem; }
+      .stats-summary { font-size: 1.1rem; margin-bottom: 1rem; }
+      #historyTable table { font-size: 0.9rem; }
+      #historyTable input[type="text"] { font-size: 0.85rem; padding: 0.4rem; }
     </style>
   </head>
   <body>
     <main class="container">
       <%- body %>
     </main>
+    <script>
+      // Toggle History Table
+      const toggleBtn = document.getElementById('toggleHistory');
+      const historyTable = document.getElementById('historyTable');
+      
+      if (toggleBtn && historyTable) {
+        toggleBtn.addEventListener('click', () => {
+          const isHidden = historyTable.style.display === 'none';
+          historyTable.style.display = isHidden ? 'block' : 'none';
+          toggleBtn.textContent = isHidden ? 'Details verbergen' : 'Details anzeigen';
+        });
+      }
+
+      // Filter Functionality
+      const filterDate = document.getElementById('filterDate');
+      const filterWinner = document.getElementById('filterWinner');
+      const filterTime = document.getElementById('filterTime');
+      const historyBody = document.getElementById('historyBody');
+
+      function applyFilters() {
+        if (!historyBody) return;
+        const rows = historyBody.querySelectorAll('tr');
+        const dateVal = filterDate?.value.toLowerCase() || '';
+        const winnerVal = filterWinner?.value.toLowerCase() || '';
+        const timeVal = filterTime?.value.toLowerCase() || '';
+
+        rows.forEach(row => {
+          const date = row.dataset.date?.toLowerCase() || '';
+          const winner = row.dataset.winner?.toLowerCase() || '';
+          const time = row.dataset.time?.toLowerCase() || '';
+
+          const match = date.includes(dateVal) && winner.includes(winnerVal) && time.includes(timeVal);
+          row.style.display = match ? '' : 'none';
+        });
+      }
+
+      [filterDate, filterWinner, filterTime].forEach(input => {
+        input?.addEventListener('input', applyFilters);
+      });
+
+      // Sort Functionality
+      const tableHeaders = document.querySelectorAll('th[data-sort]');
+      let currentSort = { column: 'date', order: 'desc' }; // Default: Datum absteigend
+
+      tableHeaders.forEach(th => {
+        th.addEventListener('click', () => {
+          const column = th.dataset.sort;
+          const order = currentSort.column === column && currentSort.order === 'asc' ? 'desc' : 'asc';
+          currentSort = { column, order };
+          
+          sortTable(column, order);
+          updateSortIndicators(th, order);
+        });
+      });
+
+      function sortTable(column, order) {
+        if (!historyBody) return;
+        const rows = Array.from(historyBody.querySelectorAll('tr'));
+        
+        rows.sort((a, b) => {
+          let aVal = a.dataset[column] || '';
+          let bVal = b.dataset[column] || '';
+          
+          // Für Datum: direkt String-Vergleich (YYYY-MM-DD)
+          // Für Zeit: auch String-Vergleich (HH:MM:SS)
+          if (order === 'asc') {
+            return aVal.localeCompare(bVal);
+          } else {
+            return bVal.localeCompare(aVal);
+          }
+        });
+
+        rows.forEach(row => historyBody.appendChild(row));
+      }
+
+      function updateSortIndicators(activeHeader, order) {
+        tableHeaders.forEach(th => {
+          th.textContent = th.textContent.replace(/ [▲▼]/, '');
+        });
+        activeHeader.textContent += order === 'asc' ? ' ▲' : ' ▼';
+      }
+    </script>
   </body>
 </html>

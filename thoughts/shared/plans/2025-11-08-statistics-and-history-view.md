@@ -134,13 +134,13 @@ app.get('/', (req, res) => {
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Unit tests für `getStatistics()` und `getHistory()` bestehen: `npm test`
-- [ ] Server startet ohne Fehler: `npm start`
-- [ ] GET `/` liefert 200 und rendert korrekt
+- [x] Unit tests für `getStatistics()` und `getHistory()` bestehen: `npm test`
+- [x] Server startet ohne Fehler: `npm start`
+- [x] GET `/` liefert 200 und rendert korrekt
 
 #### Manual Verification:
-- [ ] `/` zeigt keine Fehler in Browser-Konsole
-- [ ] Stats und History werden korrekt ans Template übergeben (prüfbar via Template-Code)
+- [x] `/` zeigt keine Fehler in Browser-Konsole
+- [x] Stats und History werden korrekt ans Template übergeben (prüfbar via Template-Code)
 
 ---
 
@@ -223,14 +223,14 @@ EJS-Template erweitern: Neue Karte mit Statistik-Übersicht, Toggle-Button und H
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Server startet und rendert ohne Fehler: `npm start`
-- [ ] HTML validiert (keine offensichtlichen Syntax-Fehler)
+- [x] Server startet und rendert ohne Fehler: `npm start`
+- [x] HTML validiert (keine offensichtlichen Syntax-Fehler)
 
 #### Manual Verification:
-- [ ] Statistik-Karte erscheint unter den Buttons
-- [ ] "Details anzeigen" Button ist sichtbar
-- [ ] Tabelle ist initial versteckt
-- [ ] Filter-Inputs und Tabelle rendern korrekt
+- [x] Statistik-Karte erscheint unter den Buttons
+- [x] "Details anzeigen" Button ist sichtbar
+- [x] Tabelle ist initial versteckt
+- [x] Filter-Inputs und Tabelle rendern korrekt
 
 ---
 
@@ -334,16 +334,16 @@ Vanilla JavaScript hinzufügen für Toggle, Filter und Sortierung der Tabelle.
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Keine JavaScript-Syntax-Fehler: Browser-Konsole bleibt leer
-- [ ] Server startet: `npm start`
+- [x] Keine JavaScript-Syntax-Fehler: Browser-Konsole bleibt leer
+- [x] Server startet: `npm start`
 
 #### Manual Verification:
-- [ ] Button "Details anzeigen" zeigt/versteckt Tabelle
-- [ ] Button-Text ändert sich entsprechend
-- [ ] Filter in allen drei Spalten funktioniert (Echtzeit)
-- [ ] Klick auf Spaltenüberschrift sortiert auf-/absteigend
-- [ ] Sortier-Indikatoren (▲▼) werden korrekt angezeigt
-- [ ] Standard-Sortierung ist Datum absteigend (neueste oben)
+- [x] Button "Details anzeigen" zeigt/versteckt Tabelle
+- [x] Button-Text ändert sich entsprechend
+- [x] Filter in allen drei Spalten funktioniert (Echtzeit)
+- [x] Klick auf Spaltenüberschrift sortiert auf-/absteigend
+- [x] Sortier-Indikatoren (▲▼) werden korrekt angezeigt
+- [x] Standard-Sortierung ist Datum absteigend (neueste oben)
 
 ---
 
@@ -395,11 +395,11 @@ describe('Statistics and History', () => {
 ### Success Criteria:
 
 #### Automated Verification:
-- [ ] Alle Tests bestehen: `npm test`
-- [ ] Code Coverage bleibt stabil oder steigt
+- [x] Alle Tests bestehen: `npm test`
+- [x] Code Coverage bleibt stabil oder steigt
 
 #### Manual Verification:
-- [ ] Tests laufen ohne Timeout oder Crash
+- [x] Tests laufen ohne Timeout oder Crash
 
 ---
 

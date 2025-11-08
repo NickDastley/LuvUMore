@@ -21,3 +21,52 @@
     <small>TZ: <code><%= process.env.TZ || 'Europe/Berlin' %></code></small>
   </footer>
 </article>
+
+<article class="stats-card">
+  <header>
+    <h2>Statistiken</h2>
+  </header>
+
+  <div class="stats-summary">
+    <% if (stats && stats.length > 0) { %>
+      <p>
+        <% stats.forEach((s, idx) => { %>
+          <strong><%= s.winner === 'nico' ? names.a : names.b %></strong>: <%= s.count %> <%= s.count === 1 ? 'Sieg' : 'Siege' %><%= idx < stats.length - 1 ? ', ' : '' %>
+        <% }); %>
+      </p>
+    <% } else { %>
+      <p>Noch keine Einträge vorhanden.</p>
+    <% } %>
+  </div>
+
+  <button type="button" id="toggleHistory" class="outline">Details anzeigen</button>
+
+  <div id="historyTable" style="display: none; margin-top: 1rem;">
+    <% if (history && history.length > 0) { %>
+      <input type="text" id="filterDate" placeholder="Datum filtern..." style="margin-bottom: 0.5rem;" />
+      <input type="text" id="filterWinner" placeholder="Gewinner filtern..." style="margin-bottom: 0.5rem;" />
+      <input type="text" id="filterTime" placeholder="Uhrzeit filtern..." style="margin-bottom: 1rem;" />
+      
+      <table role="grid">
+        <thead>
+          <tr>
+            <th data-sort="date" style="cursor: pointer;">Datum ▼</th>
+            <th data-sort="winner" style="cursor: pointer;">Gewinner</th>
+            <th data-sort="time" style="cursor: pointer;">Uhrzeit</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody">
+          <% history.forEach(entry => { %>
+            <tr data-date="<%= entry.date %>" data-winner="<%= entry.winner %>" data-time="<%= new Date(entry.recordedAt).toLocaleTimeString('de-DE') %>">
+              <td><%= entry.date %></td>
+              <td><%= entry.winner === 'nico' ? names.a : names.b %></td>
+              <td><%= new Date(entry.recordedAt).toLocaleTimeString('de-DE') %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>Keine Einträge vorhanden.</p>
+    <% } %>
+  </div>
+</article>

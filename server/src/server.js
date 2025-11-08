@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { db, upsertToday, getToday, ensureSchema } from './services/db.js';
+import { db, upsertToday, getToday, getStatistics, getHistory, ensureSchema } from './services/db.js';
 import { todayDate, nowUtcMs } from './utils/time.js';
 import ejsLayouts from 'express-ejs-layouts';
 
@@ -34,11 +34,15 @@ app.get('/', (req, res) => {
   const tz = process.env.TZ || 'Europe/Berlin';
   const d = todayDate(tz);
   const today = getToday(d);
+  const stats = getStatistics();
+  const history = getHistory();
   res.render('index', {
     title: 'LuvUMore',
     todayDate: d,
     winner: today?.winner || null,
     names: { a: PARTNER_A, b: PARTNER_B },
+    stats,
+    history,
   });
 });
 
