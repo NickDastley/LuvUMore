@@ -18,6 +18,8 @@
     - SQLite database with persistent storage
     
     Perfect for couples who want to keep track of their "I love you more" competition!
+    
+    Note: This template uses the :latest tag for automatic update detection in Unraid.
   </Overview>
   <Category>Tools: Status:Stable</Category>
   <WebUI>http://[IP]:[PORT:3000]</WebUI>

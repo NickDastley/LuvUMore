@@ -203,13 +203,35 @@ docker start luvumore
 
 ## Updating
 
-### Method 1 (GHCR Images):
+### Automatic Update Detection
+
+If you used the `:latest` tag, Unraid will automatically detect when new versions are available.
+
+1. Go to Docker tab in Unraid
+2. Look for containers with "Update Ready" badge
+3. Click **Update** on the LuvUMore container
+4. Wait for the new image to download
+5. Container will restart automatically
+
+### Manual Update (Force Update)
+
+If you want to force an update:
 
 1. Go to Docker tab in Unraid
 2. Click on the LuvUMore container
 3. Click **Force Update**
 4. Wait for the new image to download
 5. Container will restart automatically
+
+### Using Specific Versions
+
+For production stability, you can use specific version tags:
+
+- `ghcr.io/nickdastley/luvumore:latest` - Always get the newest version (recommended for home use)
+- `ghcr.io/nickdastley/luvumore:v0.2.0` - Pin to specific version (recommended for production)
+- `ghcr.io/nickdastley/luvumore:main` - Latest from main branch
+
+**Important**: Always use `:latest` or a version tag (like `:v0.2.0`), **not** the SHA-based tags (like `:main-c29d96a`). The SHA-based tags prevent Unraid from detecting updates.
 
 ### Method 2 (Local Build):
 

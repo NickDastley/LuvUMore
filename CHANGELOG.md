@@ -12,18 +12,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GitHub Container Registry automated builds via GitHub Actions
 - Comprehensive Unraid deployment documentation (UNRAID_DEPLOYMENT.md)
 - Docker image OCI labels and metadata for better container identification
-- Non-root user support in Docker container for enhanced security
+- Non-root user support in Docker container for enhanced security (UID/GID 1000)
 - Health check improvements with configurable PORT environment variable
 - Complete test checklist for Unraid deployment validation
+- Docker entrypoint script to detect and report permission issues
+- Automatic tagging strategy (latest, version tags, SHA tags)
 
 ### Changed
 - Optimized Dockerfile for production deployment
-- Enhanced security with non-root user (UID/GID 1000)
+- Enhanced security with non-root user using existing node user (UID/GID 1000)
 - Updated health check start-period from 5s to 10s for better reliability
 - Added build arguments for versioning (BUILD_DATE, VCS_REF, VERSION)
+- Updated Unraid template to use :latest tag for automatic update detection
 
 ### Fixed
 - Health check timing for container startup
+- Volume permission handling with entrypoint script
+- Clear error messages when /data directory is not writable
+- Documentation for permission troubleshooting on Unraid
 
 ## [0.1.0] - 2025-11-08
 
