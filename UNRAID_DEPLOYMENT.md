@@ -232,11 +232,20 @@ docker restart luvumore
 
 ### Permission issues
 
-If you see database permission errors:
+If you see database permission errors like "unable to open database file":
+
+The container runs as user ID 1000. Ensure the appdata directory has correct permissions:
 
 ```bash
+# Fix permissions on Unraid
 chown -R 1000:1000 /mnt/user/appdata/luvumore
+
+# Or if the directory doesn't exist yet
+mkdir -p /mnt/user/appdata/luvumore
+chown 1000:1000 /mnt/user/appdata/luvumore
 ```
+
+Then restart the container.
 
 ### Port already in use
 

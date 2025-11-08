@@ -33,6 +33,10 @@ RUN npm ci --omit=dev --no-audit --no-fund || npm install --omit=dev --no-audit 
 # Copy application source
 COPY server ./server
 
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Expose port (configurable via ENV)
 EXPOSE ${PORT}
 
@@ -48,6 +52,9 @@ RUN mkdir -p /data && \
     chown -R node:node /app /data
 
 USER node
+
+# Use entrypoint to handle permissions
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 # Start application
 CMD ["node", "server/src/index.js"]
